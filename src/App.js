@@ -96,23 +96,23 @@ int main(){
 #include<stdio.h>
 #include<print_array.h>
 
-void merge(){
+void merge(int arr[], int l, int m, int r){
   int i, j, k;
-  int n1 = m-l + 1;
-  int n2 = r - m;
-  int L[n1], R[n2];
+  int leftLen = m-l + 1;
+  int rightLen = r - m;
+  int L[leftLen], R[rightLen];
 
-  for(i = 0; i < n1; i++)
+  for(i = 0; i < leftLen; i++)
     L[i] = arr[l+i];
 
-  for(j = 0; j < n2; j++)
+  for(j = 0; j < rightLen; j++)
     R[j] = arr[m + 1 + j];
 
   j = 0;
   i = 0;
   k = l;
 
-  while(i < n1 && j < n2){
+  while(i < leftLen && j < rightLen){
     if(L[i] <= R[j]){
       arr[k] = L[i];
       i++;
@@ -123,13 +123,13 @@ void merge(){
     k++;
   }
 
-  while(i < n1){
+  while(i < leftLen){
     arr[k] = L[i];
     i++;
     k++;
   }
 
-  while(j < n2){
+  while(j < rightLen){
     arr[k] = R[j];
     j++;
     k++;
