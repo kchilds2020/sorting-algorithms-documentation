@@ -11,6 +11,7 @@ function App() {
           <li><a href="#bubblesort" className={ active === 'bubblesort' ? 'active' : '' } onClick ={() => setActive('bubblesort')}>Bubble Sort</a></li>
           <li><a href="#selectionsort" className={ active === 'selectionsort' ? 'active' : '' } onClick ={() => setActive('selectionsort')}>Selection Sort</a></li>
           <li><a href="#mergesort" className={ active === 'mergesort' ? 'active' : '' } onClick ={() => setActive('mergesort')}>Merge Sort</a></li>
+          <li><a href="#quicksort" className={ active === 'quicksort' ? 'active' : '' } onClick ={() => setActive('quicksort')}>Quick Sort</a></li>
         </ul>
       </div>
       <div className="right" >
@@ -160,7 +161,49 @@ int main(){
           </code></pre>
         </div>
         
-      </div>
+       <div id="quicksort">
+          <h2 style={{marginBottom: '5px'}}>Quick Sort</h2>
+          <div>Time Complexity: O( nlog(n) )</div>
+          <pre><code className="c">{`
+#include<stdio.h>
+#include<print_array.h>
+
+int partition(int array[], int low, int high){
+  int pivot = array[high];
+  int  i = low - 1, j = low;
+  
+  for(j; j <= high; j++){
+    if(array[j] < pivot){
+      i++;
+      swap(&array[i], &array[j]);
+    }
+  }
+
+  swap(&array[i+1], &array[high]);
+  return(i+1);
+}
+
+void quickSort(int array[], int low, int high){
+  if(low < high){
+    int pi = partition(array, low, high);
+    quickSort(array, low, pi - 1);
+    quickSort(array, pi-1, high);
+  }
+
+}
+
+int main(){
+  int array[10] = {8,5,4,3,2,6,5,4,3,2};
+  int arrayCount = 10;
+
+  quickSort(array, 0, arrayCount - 1);
+
+  return 0;
+}
+          `}
+          </code></pre>
+        </div>
+     </div> 
     </>
   );
 }
